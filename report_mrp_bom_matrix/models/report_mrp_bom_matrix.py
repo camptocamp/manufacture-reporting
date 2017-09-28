@@ -43,7 +43,7 @@ class ReportMrpBomMatrix(models.Model):
     def _group_by(self):
         group_by_str = """
             GROUP BY l.product_id,
-                     p.product_tmpl_id
+                     p.product_tmpl_id,
                      pt.categ_id
         """
         return group_by_str
