@@ -24,7 +24,7 @@ class ReportMrpBomMatrix(models.Model):
     def _select(self):
         select_str = """
             SELECT min(l.id) as id, l.product_id as component_id,
-                   p.product_tmpl_id as parent_template_id,                   
+                   p.product_tmpl_id as parent_template_id,
                    CASE WHEN min(q.count_parent_usage) is null
                    THEN 1
                    ELSE min(q.count_parent_usage)
@@ -66,7 +66,7 @@ class ReportMrpBomMatrix(models.Model):
                         FROM cte1 as c
                         LEFT JOIN cte1 as p
                         ON c.parent_id = p.child_id
-                        WHERE p.child_id IS NULL        
+                        WHERE p.child_id IS NULL
                         UNION
                         SELECT cte1.child_id, cte1.child_name, root, root_name
                     FROM tree
@@ -74,7 +74,7 @@ class ReportMrpBomMatrix(models.Model):
 
                 SELECT child, count(root_name) as count_parent_usage
                 FROM tree
-                group by child) as q                     
+                group by child) as q
             ON q.child = p.product_tmpl_id
         """
         return from_str
