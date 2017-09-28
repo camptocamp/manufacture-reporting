@@ -17,7 +17,6 @@ class ReportMrpBomMatrix(models.Model):
                                          readonly=True)
     parent_category_id = fields.Many2one(comodel_name='product.category',
                                          string='Parent Product Category',
-                                         related='parent_template_id.categ_id',
                                          store=True, readonly=True)
     count_component_id = fields.Integer(string='# of Components/Parent '
                                                'Template', readonly=True)
@@ -26,7 +25,7 @@ class ReportMrpBomMatrix(models.Model):
         select_str = """
             SELECT min(l.id) as id, l.product_id as component_id,
                    p.product_tmpl_id as parent_template_id,                   
-                   count(l.product_id) as count_component_id
+                   count(l.product_id) as count_component_id,
                    pt.categ_id as parent_category_id
         """
         return select_str
@@ -45,6 +44,7 @@ class ReportMrpBomMatrix(models.Model):
         group_by_str = """
             GROUP BY l.product_id,
                      p.product_tmpl_id
+                     pt.categ_id
         """
         return group_by_str
 
