@@ -25,8 +25,9 @@ class ReportMrpBomMatrix(models.Model):
     def _select(self):
         select_str = """
             SELECT min(l.id) as id, l.product_id as component_id,
-                   p.product_tmpl_id as parent_template_id,
+                   p.product_tmpl_id as parent_template_id,                   
                    count(l.product_id) as count_component_id
+                   pt.categ_id as parent_category_id
         """
         return select_str
 
@@ -35,6 +36,8 @@ class ReportMrpBomMatrix(models.Model):
             FROM mrp_bom_line as l
             INNER JOIN mrp_bom p
             ON p.id = l.bom_id
+            INNER JOIN product_template pt
+            on pt.id = p.product_tmpl_id
         """
         return from_str
 
