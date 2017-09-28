@@ -24,8 +24,8 @@ class ReportMrpBomMatrix(models.Model):
 
     def _select(self):
         select_str = """
-            SELECT min(l.id) as id, l.product_id as component_id, 
-                   p.product_tmpl_id as parent_template_id, 
+            SELECT min(l.id) as id, l.product_id as component_id,
+                   p.product_tmpl_id as parent_template_id,
                    count(l.product_id) as count_component_id
         """
         return select_str
@@ -40,7 +40,7 @@ class ReportMrpBomMatrix(models.Model):
 
     def _group_by(self):
         group_by_str = """
-            GROUP BY l.product_id, 
+            GROUP BY l.product_id,
                      p.product_tmpl_id
         """
         return group_by_str
