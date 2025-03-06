@@ -1,0 +1,2 @@
+odoo-addon-mrp_order_report_lot @ git+https://github.com/OCA/manufacture-reporting.git@refs/pull/137/head#subdirectory=setup/mrp_order_report_lot
+odoo-addon-mrp_order_report_reserved @ git+https://github.com/OCA/manufacture-reporting.git@refs/pull/138/head#subdirectory=setup/mrp_order_report_reserved
